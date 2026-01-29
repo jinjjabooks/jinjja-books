@@ -272,7 +272,7 @@ body.sub-page .side-backdrop {
   visibility: hidden;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
     padding: 1.25rem;
