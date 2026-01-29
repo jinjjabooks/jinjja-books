@@ -46,12 +46,29 @@ listItems.forEach(item => {
     });
 });
 
-// 2. 메뉴명 "Books" 클릭 시 로직: 강제 전체 초기화
-// (Note: 링크 태그(a)가 아닌 부모(booksLabel)에 이벤트를 걸어서, 밑줄 등 주변 클릭 시에도 동작하도록 함)
+// 2. 메뉴명 "Books" 클릭 시 로직
+// Desktop(>=1300px): 강제 전체 초기화 (Reset)
+// Mobile/Tablet(<1300px): 메뉴 토글 (Toggle)
 booksLabel.addEventListener('click', (e) => {
-    // About 닫기
+    const isMobileOrTablet = window.matchMedia("(max-width: 1299px)").matches;
+
+    // 공통: About 닫기
     aboutLabel.classList.remove('is-open');
 
+    // MOBILE / TABLET Logic (< 1300px)
+    if (isMobileOrTablet) {
+        e.preventDefault();
+        e.stopPropagation(); // 드롭다운 토글 시 페이지 이동 방지
+
+        // Books 메뉴 토글
+        booksLabel.classList.toggle('is-open');
+
+        // 만약 열리는 거라면 Body 배경 등 처리 (필요시)
+        // 여기서는 is-open 클래스만으로 CSS display 조정됨
+        return;
+    }
+
+    // DESKTOP Logic (>= 1300px)
     // 실제 이동할 링크 href 확인
     const link = booksLink; // 상단에서 정의된 booksLink (a 태그) 사용
     const href = link.getAttribute('href');

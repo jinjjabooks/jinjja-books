@@ -272,11 +272,98 @@ body.sub-page .side-backdrop {
   visibility: hidden;
 }
 
-@media (max-width: 768px) {
+/* Tablet (Large) and Mobile Interaction Updates (< 1300px) */
+@media (max-width: 1299px) {
+
+  /* Disable hover for Books */
+  .books-label:hover .book-list {
+    display: none;
+  }
+
+  /* Ensure click (is-open) works */
+  .books-label.is-open .book-list {
+    display: block;
+  }
+
+  /* Disable hover for About */
+  .about-label:hover~.about-description {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Ensure click (is-open) works */
+  .about-label.is-open~.about-description {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* 
+     Underline Rules: 
+     - Active (is-open, is-selected) = Solid 
+     - Inactive / Hover = None 
+  */
+
+  .nav-item:hover {
+    text-decoration: none;
+  }
+
+  .books-label.is-open {
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0.125rem;
+    text-underline-offset: 0.1875rem;
+  }
+
+  .about-label:hover {
+    text-decoration: none;
+  }
+
+  .about-label.is-open {
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0.125rem;
+    text-underline-offset: 0.1875rem;
+  }
+
+  /* Reset hover for list items */
+  .book-list li:hover {
+    text-decoration: none;
+  }
+
+  /* Ensure selected items stay solid */
+  .book-list li.is-selected {
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-color: currentColor;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1299px) {
+  .grid-container {
+    grid-template-columns: repeat(6, 1fr);
+    padding: 1.875rem 1.25rem;
+  }
+
+  .nav-logo {
+    grid-column: 8;
+  }
+
+  .about-description {
+    grid-column: 2 / 4;
+  }
+
+  body.sub-page .about-description {
+    grid-column: 2 / 4;
+  }
+}
+
+
+@media (max-width: 767px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
     padding: 1.25rem;
     row-gap: 1.25rem;
+    padding-bottom: 3.75rem;
   }
 
   .nav-logo {
@@ -289,6 +376,16 @@ body.sub-page .side-backdrop {
   .books-label {
     grid-column: 1 !important;
     grid-row: 1;
+  }
+
+  .book-list {
+    background: linear-gradient(180deg, transparent 0.6rem, #ffffff 0.6rem);
+    z-index: 15;
+    padding-top: 0;
+    padding-bottom: 0.625rem;
+    width: calc(100vw - 1.25rem);
+    padding-right: 0.25rem;
+    margin-top: 1rem;
   }
 
   /* Ensure about-wrapper is transparent to grid */
@@ -318,6 +415,11 @@ body.sub-page .side-backdrop {
   .side-backdrop {
     width: 100vw;
     z-index: 20;
+    position: relative;
+    height: auto;
+    top: auto;
+    bottom: auto;
+    overflow-y: visible;
   }
 
   .hover-bg {
