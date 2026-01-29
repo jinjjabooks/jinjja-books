@@ -3,6 +3,17 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color: #ffffff;
+}
+
+input,
+textarea,
+button,
+select {
+  font-family: inherit;
+}
+
 html {
   overflow-y: scroll;
 }
@@ -231,7 +242,7 @@ body.sub-page .about-description {
   -webkit-transform: translateZ(0);
   align-items: flex-start;
   justify-content: center;
-  z-index: -1;
+  z-index: 5;
   scrollbar-width: thin;
   /* Firefox */
   scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
@@ -326,6 +337,10 @@ body.sub-page .side-backdrop {
   }
 
   /* Reset hover for list items */
+  .book-list li {
+    text-decoration: none;
+  }
+
   .book-list li:hover {
     text-decoration: none;
   }
@@ -345,15 +360,16 @@ body.sub-page .side-backdrop {
   }
 
   .nav-logo {
-    grid-column: 8;
+    grid-column: 6;
   }
 
   .about-description {
-    grid-column: 2 / 4;
+    grid-column: 3 / 6;
   }
 
   body.sub-page .about-description {
     grid-column: 2 / 4;
+    padding-right: 20px;
   }
 }
 
@@ -366,11 +382,18 @@ body.sub-page .side-backdrop {
     padding-bottom: 3.75rem;
   }
 
+  .nav-item,
+  .book-list li {
+    font-size: 1.3rem;
+  }
+
   .nav-logo {
     grid-column: 2;
     grid-row: 1;
     justify-self: end;
     margin-bottom: 0;
+    min-width: 1.5rem;
+    height: 1.5rem;
   }
 
   .books-label {
@@ -379,13 +402,18 @@ body.sub-page .side-backdrop {
   }
 
   .book-list {
-    background: linear-gradient(180deg, transparent 0.6rem, #ffffff 0.6rem);
+    background-color: transparent;
+    transition: background-color 3s ease;
     z-index: 15;
     padding-top: 0;
     padding-bottom: 0.625rem;
     width: calc(100vw - 1.25rem);
     padding-right: 0.25rem;
     margin-top: 1rem;
+  }
+
+  body.sub-page .book-list {
+    background-color: #ffffff;
   }
 
   /* Ensure about-wrapper is transparent to grid */
@@ -397,6 +425,7 @@ body.sub-page .side-backdrop {
     grid-column: 2 !important;
     grid-row: 1;
     margin-top: 0;
+    margin-left: -2rem;
   }
 
   .about-description {
@@ -405,6 +434,10 @@ body.sub-page .side-backdrop {
     position: relative;
     padding-right: 0;
     padding-top: 0.625rem;
+  }
+
+  .about-description p {
+    font-size: 0.95rem;
   }
 
   body.sub-page .about-description {

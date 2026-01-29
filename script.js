@@ -134,5 +134,6 @@ if (!body.classList.contains('sub-page')) {
     setInterval(() => {
         currentIndex = (currentIndex + 1) % colors.length;
         body.style.backgroundColor = colors[currentIndex];
+        body.style.setProperty('--bg-color', colors[currentIndex]);
     }, 5000);
 }
