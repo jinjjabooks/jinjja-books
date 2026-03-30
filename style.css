@@ -5,6 +5,25 @@
 
 :root {
   --bg-color: #ffffff;
+  --kr-font-size: 1rem;
+  --en-font-size: 1.125rem;
+  --main-font-weight: 400;
+  --kr-font-weight: 450;
+  --en-font-weight: 450;
+}
+
+.nav-item,
+.about-description P,
+.book-list li {
+  font-size: var(--kr-font-size);
+}
+
+.ml-en {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--en-font-size);
+  font-weight: var(--en-font-weight);
+  position: relative;
+  top: -0.01em;
 }
 
 input,
@@ -35,7 +54,7 @@ body {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   column-gap: 1.25rem;
-  padding: 1.875rem 2.5rem;
+  padding: 0.9375rem 1.25rem;
   max-width: 100%;
   margin: 0;
   align-items: start;
@@ -44,8 +63,9 @@ body {
 .nav-item {
   text-decoration: none;
   color: inherit;
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: var(--main-font-size);
+  font-weight: var(--kr-font-weight);
+  line-height: 1.2;
   display: block;
   width: fit-content;
   justify-self: start;
@@ -56,16 +76,16 @@ body {
 
 .nav-item:hover {
   text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
 
 .nav-logo {
   grid-column: 10;
   justify-self: end;
   width: auto;
-  min-width: 1.9rem;
-  height: 1.9rem;
+  min-width: 1.425rem;
+  height: 1.425rem;
   z-index: 10;
 }
 
@@ -89,13 +109,20 @@ body.sub-page .nav-logo img {
   text-align: left;
 }
 
+body.sub-page .books-label {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  text-decoration-style: solid;
+}
+
 .book-list {
   display: none;
   list-style: none;
   padding: 0;
   margin: 0;
-  padding-top: 1.25rem;
-  margin-top: -0.625rem;
+  padding-top: 1.2rem;
+  margin-top: 0;
   position: absolute;
   top: 100%;
   left: 0;
@@ -109,14 +136,14 @@ body.sub-page .nav-logo img {
 }
 
 .book-list li {
-  font-size: 1.5rem;
+  font-size: var(--main-font-size);
   cursor: pointer;
   transition: none;
   position: relative;
   top: 0.03em;
   text-decoration: underline transparent solid;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
 
 .book-list li:hover {
@@ -124,8 +151,7 @@ body.sub-page .nav-logo img {
 }
 
 .book-list li:hover:not(.is-selected) {
-  text-decoration-color: currentColor;
-  text-decoration-style: dotted;
+  text-decoration: none;
 }
 
 .book-list li.is-selected {
@@ -165,7 +191,7 @@ body.sub-page .about-wrapper {
 }
 
 .about-label {
-  grid-column: 2;
+  grid-column: 3;
   grid-row: 1;
   text-align: left;
   display: block;
@@ -178,12 +204,10 @@ body.sub-page .about-wrapper {
   visibility: hidden;
   transition: none;
   text-align: left;
+  padding-top: 2.4rem;
   padding-right: 2.5rem;
 }
 
-.about-label:hover {
-  text-decoration-style: dotted;
-}
 
 .about-label:hover~.about-description,
 .about-label.is-open~.about-description {
@@ -193,8 +217,8 @@ body.sub-page .about-wrapper {
 
 .about-label.is-open {
   text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
   text-decoration-style: solid;
 }
 
@@ -214,19 +238,21 @@ body.sub-page .about-description {
 
 .about-description P {
   margin: 0;
-  font-size: 1.125rem;
+  font-size: var(--main-font-size);
   line-height: 1.6;
   color: #000;
   text-align: left;
-  font-weight: 500;
+  font-weight: var(--kr-font-weight);
+  position: relative;
+  top: 0.03em;
 }
 
 .about-description .ml-en {
   font-family: 'Inter', sans-serif;
   font-size: 1.025em;
   position: relative;
-  top: 0.03em;
-  font-weight: 500;
+  top: -0.01em;
+  font-weight: var(--en-font-weight);
 }
 
 .side-backdrop {
@@ -283,36 +309,25 @@ body.sub-page .side-backdrop {
   visibility: hidden;
 }
 
-/* Tablet (Large) and Mobile Interaction Updates (< 1300px) */
+/* Tablet & Mobile (< 1300px) */
 @media (max-width: 1299px) {
 
-  /* Disable hover for Books */
   .books-label:hover .book-list {
     display: none;
   }
 
-  /* Ensure click (is-open) works */
   .books-label.is-open .book-list {
     display: block;
   }
-
-  /* Disable hover for About */
   .about-label:hover~.about-description {
     opacity: 0;
     visibility: hidden;
   }
 
-  /* Ensure click (is-open) works */
   .about-label.is-open~.about-description {
     opacity: 1;
     visibility: visible;
   }
-
-  /* 
-     Underline Rules: 
-     - Active (is-open, is-selected) = Solid 
-     - Inactive / Hover = None 
-  */
 
   .nav-item:hover {
     text-decoration: none;
@@ -321,8 +336,8 @@ body.sub-page .side-backdrop {
   .books-label.is-open {
     text-decoration: underline;
     text-decoration-style: solid;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
   }
 
   .about-label:hover {
@@ -332,11 +347,10 @@ body.sub-page .side-backdrop {
   .about-label.is-open {
     text-decoration: underline;
     text-decoration-style: solid;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
   }
 
-  /* Reset hover for list items */
   .book-list li {
     text-decoration: none;
   }
@@ -345,7 +359,6 @@ body.sub-page .side-backdrop {
     text-decoration: none;
   }
 
-  /* Ensure selected items stay solid */
   .book-list li.is-selected {
     text-decoration: underline;
     text-decoration-style: solid;
@@ -356,7 +369,7 @@ body.sub-page .side-backdrop {
 @media (min-width: 768px) and (max-width: 1299px) {
   .grid-container {
     grid-template-columns: repeat(6, 1fr);
-    padding: 1.875rem 1.25rem;
+    padding: 0.9375rem 0.625rem;
   }
 
   .nav-logo {
@@ -368,23 +381,22 @@ body.sub-page .side-backdrop {
   }
 
   body.sub-page .about-description {
-    grid-column: 2 / 4;
+    grid-column: 2 / 6;
     padding-right: 20px;
   }
 }
 
 
 @media (max-width: 767px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 1.25rem;
-    row-gap: 1.25rem;
-    padding-bottom: 3.75rem;
+  :root {
+    --main-font-size: 0.95rem;
   }
 
-  .nav-item,
-  .book-list li {
-    font-size: 1.3rem;
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0.625rem;
+    row-gap: 1.25rem;
+    padding-bottom: 3.75rem;
   }
 
   .nav-logo {
@@ -392,8 +404,8 @@ body.sub-page .side-backdrop {
     grid-row: 1;
     justify-self: end;
     margin-bottom: 0;
-    min-width: 1.5rem;
-    height: 1.5rem;
+    min-width: 1.2rem;
+    height: 1.2rem;
   }
 
   .books-label {
@@ -407,7 +419,7 @@ body.sub-page .side-backdrop {
     z-index: 15;
     padding-top: 0;
     padding-bottom: 0.625rem;
-    width: calc(100vw - 1.25rem);
+    width: calc(100vw - 0.625rem);
     padding-right: 0.25rem;
     margin-top: 1rem;
   }
@@ -416,7 +428,6 @@ body.sub-page .side-backdrop {
     background-color: #ffffff;
   }
 
-  /* Ensure about-wrapper is transparent to grid */
   .about-wrapper {
     display: contents;
   }
@@ -434,10 +445,6 @@ body.sub-page .side-backdrop {
     position: relative;
     padding-right: 0;
     padding-top: 0.625rem;
-  }
-
-  .about-description p {
-    font-size: 0.95rem;
   }
 
   body.sub-page .about-description {
