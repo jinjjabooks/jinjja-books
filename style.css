@@ -319,6 +319,7 @@ body.sub-page .side-backdrop {
   .books-label.is-open .book-list {
     display: block;
   }
+
   .about-label:hover~.about-description {
     opacity: 0;
     visibility: hidden;
@@ -417,11 +418,11 @@ body.sub-page .side-backdrop {
     background-color: transparent;
     transition: background-color 3s ease;
     z-index: 15;
-    padding-top: 0;
+    padding-top: 1.25rem;
     padding-bottom: 0.625rem;
     width: calc(100vw - 0.625rem);
     padding-right: 0.25rem;
-    margin-top: 1rem;
+    grid-row: 2;
   }
 
   body.sub-page .book-list {
@@ -441,15 +442,15 @@ body.sub-page .side-backdrop {
 
   .about-description {
     grid-column: 1 / -1 !important;
-    grid-row: 3;
+    grid-row: 2;
     position: relative;
     padding-right: 0;
-    padding-top: 0.625rem;
+    padding-top: 0;
   }
 
   body.sub-page .about-description {
     grid-column: 1 / -1 !important;
-    grid-row: 3;
+    grid-row: 2;
   }
 
   .side-backdrop {
